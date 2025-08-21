@@ -1,68 +1,140 @@
+/* @import "tailwindcss";
+
+
+.therapeutic-gradient {
+  background: linear-gradient(90deg, #14b8a6, #3b82f6);
+}
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* -------------------- Root Theme Variables -------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --font-size: 14px;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Therapeutic Color Palette */
+  --background: #fefefe;
+  --foreground: #2d3748;
+  --card: #ffffff;
+  --card-foreground: #2d3748;
+  --popover: #ffffff;
+  --popover-foreground: #2d3748;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* Primary: Calming Teal */
+  --primary: #00a8a8;
+  --primary-foreground: #ffffff;
+  --primary-light: #4fd1c7;
+  --primary-dark: #008080;
+
+  /* Secondary: Soft Blue */
+  --secondary: #ebf8ff;
+  --secondary-foreground: #2b6cb0;
+  --secondary-accent: #3182ce;
+
+  /* Therapeutic Colors */
+  --therapeutic-green: #38a169;
+  --therapeutic-blue: #4299e1;
+  --therapeutic-purple: #805ad5;
+  --therapeutic-orange: #ed8936;
+
+  /* Neutral Therapeutic Tones */
+  --muted: #f7fafc;
+  --muted-foreground: #718096;
+  --accent: #edf2f7;
+  --accent-foreground: #4a5568;
+
+  /* System Colors */
+  --destructive: #e53e3e;
+  --destructive-foreground: #ffffff;
+  --success: #38a169;
+  --success-foreground: #ffffff;
+  --warning: #dd6b20;
+  --warning-foreground: #ffffff;
+
+  /* UI Elements */
+  --border: rgba(203, 213, 224, 0.4);
+  --input: transparent;
+  --input-background: #f7fafc;
+  --switch-background: #cbd5e0;
+  --ring: #4fd1c7;
+
+  /* Typography */
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Shadows */
+  --shadow-therapeutic: 0 8px 32px rgba(79, 209, 199, 0.15);
+}
+
+/* -------------------- Dark Theme -------------------- */
+.dark {
+  --background: #1a202c;
+  --foreground: #f7fafc;
+  --card: #2d3748;
+  --card-foreground: #f7fafc;
+  --popover: #2d3748;
+  --popover-foreground: #f7fafc;
+  --primary: #4fd1c7;
+  --primary-foreground: #1a202c;
+  --secondary: #2d3748;
+  --secondary-foreground: #e2e8f0;
+  --muted: #4a5568;
+  --muted-foreground: #a0aec0;
+  --accent: #4a5568;
+  --accent-foreground: #f7fafc;
+  --border: rgba(113, 128, 150, 0.3);
+  --input: #4a5568;
+  --ring: #4fd1c7;
+}
+
+/* -------------------- Base Styles -------------------- */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+h1, h2, h3, h4 {
+  color: var(--foreground);
+  font-weight: var(--font-weight-semibold);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+p {
+  color: var(--muted-foreground);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* -------------------- Utilities -------------------- */
+.therapeutic-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.therapeutic-shadow {
+  box-shadow: var(--shadow-therapeutic);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.therapeutic-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-therapeutic);
+  transition: all 0.3s ease;
+}
+.therapeutic-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
