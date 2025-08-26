@@ -85,7 +85,7 @@ function AuthModal({ isOpen, onClose, defaultTab = "login" }) {
               </div>
               <button
                 type="submit"
-                className="w-full bg-teal-500 text-white font-semibold py-2 rounded-md text-sm mt-1 transition hover:bg-teal-600"
+                className="w-full therapeutic-gradient text-white font-semibold py-2 rounded-md text-sm mt-1 transition hover:bg-teal-600"
               >
                 Sign In
               </button>
@@ -191,7 +191,7 @@ function AuthModal({ isOpen, onClose, defaultTab = "login" }) {
               <RoleDropdown signupForm={signupForm} setSignupForm={setSignupForm} />
               <button
                 type="submit"
-                className="w-full bg-teal-500 text-white font-semibold py-2 rounded-md text-sm mt-1 transition hover:bg-teal-600"
+                className="w-full therapeutic-gradient text-white font-semibold py-2 rounded-md text-sm mt-1 transition hover:bg-teal-600"
               >
                 Create Account
               </button>

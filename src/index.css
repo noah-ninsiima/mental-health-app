@@ -138,3 +138,41 @@ p {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For Firefox */
+  color: transparent;
+}
+.text-therapeutic-green {
+  color: var(--therapeutic-green);
+}
+
+.text-therapeutic-blue {
+  color: var(--therapeutic-blue);
+}
+
+.text-therapeutic-purple {
+  color: var(--therapeutic-purple);
+}
+.text-therapeutic-orange {
+  color: var(--therapeutic-orange);
+}
+
+.bg-therapeutic-purple-10 {
+  background-color: color-mix(in srgb, var(--therapeutic-purple) 10%, transparent);
+}
+.bg-therapeutic-green-10 {
+  background-color: color-mix(in srgb, var(--therapeutic-green) 10%, transparent);
+}
+.bg-therapeutic-blue-10 {
+  background-color: color-mix(in srgb, var(--therapeutic-blue) 10%, transparent);
+}
+.bg-therapeutic-orange-10 {
+  background-color: color-mix(in srgb, var(--therapeutic-orange) 10%, transparent);
+}
+/* global.css */
+.bg-therapeutic-green {
+  background-color: var(--therapeutic-green);
+}
