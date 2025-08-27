@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Heart, Calendar } from "lucide-react";
-import AuthModal from "../..//Pages/Authentication/AuthModal"; // make sure this exists
+import AuthModal from "../../Pages/Authentication/AuthModal.jsx"; // fixed relative path
 
- function Navbar({ onNavigate }) {
+function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalTab, setAuthModalTab] = useState("login");
@@ -17,57 +18,62 @@ import AuthModal from "../..//Pages/Authentication/AuthModal"; // make sure this
     setIsAuthModalOpen(true);
   };
 
+  const closeMobile = () => setIsMenuOpen(false);
+
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2" onClick={closeMobile}>
               <div className="flex items-center justify-center w-10 h-10 rounded-xl therapeutic-gradient">
                 <Heart className="h-6 w-6 text-white" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-gradient">MindRafiki</h1>
-                <p className="text-xs text-muted-foreground -mt-1">
-                  Mental Health Support
-                </p>
+                <p className="text-xs text-muted-foreground -mt-1">Mental Health Support</p>
               </div>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
-              <button
-                onClick={() => onNavigate?.("home")}
+              <Link
+                to="/"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
               >
                 Home
-              </button>
-              <button
-                onClick={() => onNavigate?.("booking")}
+              </Link>
+
+              <Link
+                to="/booking"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 flex items-center gap-1"
               >
                 <Calendar className="h-3 w-3" />
                 Book Session
-              </button>
-              <button
-                onClick={() => onNavigate?.("resources")}
+              </Link>
+
+              <Link
+                to="/resources"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
               >
                 Resources
-              </button>
-              <button
-                onClick={() => onNavigate?.("chat")}
+              </Link>
+
+              <Link
+                to="/chat"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
               >
                 Support Chat
-              </button>
-              <button
-                onClick={() => onNavigate?.("mood")}
+              </Link>
+
+              {/* New section placeholder */}
+              <Link
+                to="/therapists"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
               >
-                Mood Journal
-              </button>
+                Therapists
+              </Link>
             </nav>
 
             {/* CTA Buttons */}
@@ -91,11 +97,7 @@ import AuthModal from "../..//Pages/Authentication/AuthModal"; // make sure this
               className="md:hidden p-2 rounded-md hover:bg-secondary"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
 
@@ -103,62 +105,64 @@ import AuthModal from "../..//Pages/Authentication/AuthModal"; // make sure this
           {isMenuOpen && (
             <div className="md:hidden border-t border-border/40 py-4">
               <nav className="flex flex-col space-y-4">
-                <button
-                  onClick={() => {
-                    onNavigate?.("home");
-                    setIsMenuOpen(false);
-                  }}
+                <Link
+                  to="/"
+                  onClick={closeMobile}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 py-2 text-left"
                 >
                   Home
-                </button>
-                <button
-                  onClick={() => {
-                    onNavigate?.("booking");
-                    setIsMenuOpen(false);
-                  }}
+                </Link>
+
+                <Link
+                  to="/booking"
+                  onClick={closeMobile}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 py-2 text-left flex items-center gap-2"
                 >
                   <Calendar className="h-4 w-4" />
                   Book Session
-                </button>
-                <button
-                  onClick={() => {
-                    onNavigate?.("resources");
-                    setIsMenuOpen(false);
-                  }}
+                </Link>
+
+                <Link
+                  to="/resources"
+                  onClick={closeMobile}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 py-2 text-left"
                 >
                   Resources
-                </button>
-                <button
-                  onClick={() => {
-                    onNavigate?.("chat");
-                    setIsMenuOpen(false);
-                  }}
+                </Link>
+
+                <Link
+                  to="/chat"
+                  onClick={closeMobile}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 py-2 text-left"
                 >
                   Support Chat
-                </button>
-                <button
-                  onClick={() => {
-                    onNavigate?.("mood");
-                    setIsMenuOpen(false);
-                  }}
+                </Link>
+
+                {/* New section placeholder */}
+                <Link
+                  to="/therapists"
+                  onClick={closeMobile}
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 py-2 text-left"
                 >
-                  Mood Journal
-                </button>
+                  Therapists
+                </Link>
+
                 <div className="flex flex-col space-y-2 pt-4 border-t border-border/40">
                   <button
                     className="px-3 py-1 rounded-md text-sm font-medium border border-border hover:bg-muted"
-                    onClick={handleSignInClick}
+                    onClick={() => {
+                      closeMobile();
+                      handleSignInClick();
+                    }}
                   >
                     Sign In
                   </button>
                   <button
                     className="px-3 py-1 rounded-md text-sm font-medium therapeutic-gradient text-white"
-                    onClick={handleGetStartedClick}
+                    onClick={() => {
+                      closeMobile();
+                      handleGetStartedClick();
+                    }}
                   >
                     Get Started
                   </button>
@@ -178,4 +182,5 @@ import AuthModal from "../..//Pages/Authentication/AuthModal"; // make sure this
     </>
   );
 }
-export default Navbar
+
+export default Navbar;
