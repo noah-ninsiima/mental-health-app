@@ -10,6 +10,8 @@ import TherapistDetail from "./assets/Pages/TherapistDetail.jsx";
 import AdminDashboard from "./assets/Pages/Dashboard/AdminDashboard.jsx";
 import GuardianDashboard from "./assets/Pages/Dashboard/GuardianDashboard.jsx";
 import TherapistDashboard from "./assets/Pages/Dashboard/TherapistDashboard.jsx";
+import RequireAuth, { RequireRole } from "./assets/components/auth/Guards.jsx";
+
 export default function App() {
   return (
     <>
@@ -22,9 +24,37 @@ export default function App() {
         <Route path="/resources" element={<ResourceLibrary />} />
         <Route path="/therapists" element={<TherapistProfiles />} />
         <Route path="/therapists/:id" element={<TherapistDetail />} />
-        <Route path="/dashboard/admin" element={<AdminDashboard />} />
-        <Route path="/dashboard/guardian" element={<GuardianDashboard />} />
-        <Route path="/dashboard/therapist" element={<TherapistDashboard />} />
+        <Route
+  path="/dashboard/admin"
+  element={
+    <RequireAuth>
+      <RequireRole allowed="admin">
+        <AdminDashboard />
+      </RequireRole>
+    </RequireAuth>
+  }
+/>
+        <Route
+  path="/dashboard/guardian"
+  element={
+    <RequireAuth>
+      <RequireRole allowed="guardian">
+        <GuardianDashboard />
+      </RequireRole>
+    </RequireAuth>
+  }
+/>
+
+<Route
+  path="/dashboard/therapist"
+  element={
+    <RequireAuth>
+      <RequireRole allowed="therapist">
+        <TherapistDashboard />
+      </RequireRole>
+    </RequireAuth>
+  }
+/>
         {/* quick sanity route */}
         <Route path="/_sanity" element={<div style={{padding:20}}>OK ✅</div>} />
 

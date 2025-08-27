@@ -75,6 +75,9 @@ function Navbar() {
                 Therapists
               </Link>
             </nav>
+            <Link to="/dashboard/admin" className="text-sm font-medium text-foreground hover:text-primary">Admin</Link>
+<Link to="/dashboard/guardian" className="text-sm font-medium text-foreground hover:text-primary">Guardian</Link>
+<Link to="/dashboard/therapist" className="text-sm font-medium text-foreground hover:text-primary">Therapist</Link>
 
             {/* CTA Buttons */}
             <div className="hidden md:flex items-center space-x-3">
