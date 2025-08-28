@@ -17,7 +17,7 @@ const THERAPISTS = [
     name: "Dr. Sarah Kintu",
     title: "Clinical Psychologist",
     location: "Kampala",
-    gcalBookingUrl: "", // e.g. "https://calendar.google.com/calendar/u/0/appointments/schedules/.../bookings/..."
+    gcalBookingUrl: "https://calendar.app.google/WF7ot3rTXXCHcNmy7", // e.g. "https://calendar.google.com/calendar/u/0/appointments/schedules/.../bookings/..."
   },
   {
     id: "t2",
