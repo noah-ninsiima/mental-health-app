@@ -1,34 +1,31 @@
-// src/assets/components/auth/Guards.jsx
 import { SignedIn, SignedOut, RedirectToSignIn, useUser } from "@clerk/clerk-react";
+import { Navigate } from "react-router-dom";
 
-const AUTH_ON = false; //const AUTH_ON = String(import.meta.env.VITE_ENABLE_AUTH).toLowerCase() === "true";
+const AUTH_ON = String(import.meta.env.VITE_ENABLE_AUTH).toLowerCase() === "true";
 
-/** RequireAuth: if auth is OFF, just render children. */
 export default function RequireAuth({ children }) {
   if (!AUTH_ON) return <>{children}</>;
-
   return (
     <>
       <SignedIn>{children}</SignedIn>
       <SignedOut>
-        <RedirectToSignIn />
+        <RedirectToSignIn redirectUrl={window.location.pathname} />
       </SignedOut>
     </>
   );
 }
-
-/** RequireRole: if auth is OFF, just render children. */
 export function RequireRole({ allowed, children }) {
   if (!AUTH_ON) return <>{children}</>;
 
   const { isLoaded, user } = useUser();
   if (!isLoaded) return null;
 
-  const current = user?.publicMetadata?.role;
-  const ok = Array.isArray(allowed) ? allowed.includes(current) : current === allowed;
+  const role = user?.publicMetadata?.role;
 
-  if (ok) return <>{children}</>;
-  return <NotAuthorized />;
+   if (!role) return <Navigate to="/onboarding" replace />;
+
+  const ok = Array.isArray(allowed) ? allowed.includes(role) : role === allowed;
+  return ok ? <>{children}</> : <NotAuthorized />;
 }
 
 export function NotAuthorized() {
